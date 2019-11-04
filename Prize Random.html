@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="Prize Random.css">
+</head>
+<body>
+
+<input type="text" id="input"></input>
+<select id="droplist">
+	<option value="tel">Tel</option>
+	<option value="prize">Prize</option>
+</select>
+<input type="button" value="Add" id="adds" onclick="addItems()"></input>
+<input type="button" value="Start" id="start" onclick="findWinner()"></input>
+<span id="showrandom"></span>
+<span id="aaa"></span>
+
+<hr>
+<div id="tel">
+	<h3>Phone Number:</h3>
+	<ol id="phone"></ol>
+</div>
+<div id="pri">
+	<h3>Prize:</h3>
+	<ol id="prize"></ol>
+</div>
+<div id="res">
+	<h3>Winner:</h3>
+	<ol id="result"></ol>
+</div>
+
+<script>
+	var strph = "";
+	var strp = "";
+	function addItems(){
+		var selects = document.getElementById('droplist');
+		var selectValue = selects.options[selects.selectedIndex].value;
+		var input = document.getElementById('input');
+		var phone = document.getElementById('phone');
+		var prize = document.getElementById('prize')		
+		if (selectValue == 'tel') {
+			strph+= "<li class='eachtel'>" + input.value + "</li>";
+			phone.innerHTML = strph;
+			input.value="";
+		}
+		else{
+			strp+= "<li class='prize-items'>" + input.value + "$" + "</li>";
+			prize.innerHTML = strp;
+			input.value="";
+		}
+	}
+
+	function findWinner(){
+		var	start = document.getElementById("start");
+		var startValue = start.value;
+		var showrandom = document.getElementById('showrandom');
+		var c = document.getElementById('aaa');	
+
+		if (startValue == 'Start') {
+			start.value = 'Stop';
+			showrandom.style.display="block";
+			runningNumber();							
+		}
+		else{
+			start.value = 'Start';
+			showrandom.style.display="none";
+			ShowWinner();
+		}
+	}
+
+	var i = 0;
+	var eachtel = document.getElementsByClassName('eachtel');	
+
+	function runningNumber(){		
+		if (i < eachtel.length) {
+			showrandom.innerText = eachtel[i].innerText;
+			i++;					
+		}
+		else{
+			i=0;
+		}
+		var st = setTimeout(function(){runningNumber()},100);
+	}
+	 	var str = '';	
+	function ShowWinner(){		
+		
+		// Random for Phone Number.
+		var c = document.getElementById('aaa');		
+		var a = Math.round(Math.random()*eachtel.length); 
+		c.innerText = eachtel[a].innerText;
+		
+		// Random for Prize.
+		var prizeItems = document.getElementsByClassName('prize-items')
+		var d = Math.round(Math.random()*prizeItems.length);
+		var e = prizeItems[d].innerText;
+		
+		// put number and prize into Result.
+		str = str + "<li class='result-items'>" + "This prize is belong to Number " + eachtel[a-1].innerText + " for " + e + "</li>";
+		result.innerHTML = str;
+	}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+*{margin: 0px;padding: 0px}
+#input, #droplist, #adds{
+	margin: 20px 0px 15px 15px;
+}
+#adds{
+	width: 50px;
+}
+#droplist{
+	width: 100px;
+}
+ol, #prize{
+	list-style: none;
+	font-size: 20px;
+	margin-left: 0px;
+}
+#tel, #pri, #res{
+	width: 30%;
+	min-height: 200px;
+	background: pink;
+	margin: 20px 0px 0px 15px;
+	padding: 8px;
+	float: left;
+}
+h3{
+	color: blue;
+}
+#start{
+	width: 50px;
+	margin-left: 15px;
+}
+#showrandom, #aaa{
+	margin-left: 10px;
+}
